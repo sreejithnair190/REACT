@@ -1,14 +1,9 @@
-import Category from './components/category/category';
+import Home from './components/routes/home/home';
 import './styles/categories.scss';
-import categories from './json/categories.json';
 
 
 const App = () => {
-  return (
-    <Category
-      categories={categories}
-    />
-  );
+  return <Home />
 }
 
 export default App;
