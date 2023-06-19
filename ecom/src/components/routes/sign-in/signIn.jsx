@@ -1,11 +1,11 @@
 import React from 'react'
-import { signInWithGooglePopup } from'../../../utils/firebase/firebase';
+import { signInWithGooglePopup, createUserAccount } from'../../../utils/firebase/firebase';
 
 const SignIn = () => {
   const logUser = async () => {
     try {
-        const response = await signInWithGooglePopup();
-        console.log(response);
+        const {user} = await signInWithGooglePopup();
+        createUserAccount(user);
     } catch (error) {
         console.log(error);
     }
