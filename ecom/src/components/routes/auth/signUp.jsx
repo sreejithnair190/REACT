@@ -3,9 +3,9 @@ import {
   createAuthUser,
   createUserAccount,
 } from "../../../utils/firebase/firebase";
-import FormInput from "../../form/formInput";
+import FormInput from "./../../form/formInput";
 import "../../../assets/scss/sign-up.scss";
-import Button from "../../button/button";
+import Button from "./../../button/button";
 
 const defaultFormFields = {
   displayName: "",

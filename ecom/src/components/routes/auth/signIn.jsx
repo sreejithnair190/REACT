@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { signInWithGooglePopup, createUserAccount, signInUserWithEmailPass } from'../../../utils/firebase/firebase';
-import FormInput from "../../form/formInput";
-import Button from "../../button/button";
-import './../../../assets/scss/sign-in.scss'
+import {
+  signInWithGooglePopup,
+  createUserAccount,
+  signInUserWithEmailPass,
+} from "../../../utils/firebase/firebase";
+import FormInput from "./../../form/formInput";
+import Button from "./../../button/button";
+import "./../../../assets/scss/sign-in.scss";
 
 const defaultFormFields = {
   email: "",
@@ -21,13 +25,13 @@ const SignIn = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try{
+    try {
       const response = await signInUserWithEmailPass(email, password);
       console.log(response);
       resetFields();
-    }catch (error) {
-      if (error.code == 'auth/wrong-password') alert('Invalid Credentials');
-      if (error.code == 'auth/user-not-found') alert('No User found');
+    } catch (error) {
+      if (error.code === "auth/wrong-password") alert("Invalid Credentials");
+      if (error.code === "auth/user-not-found") alert("No User found");
       console.log(error);
     }
   };
@@ -36,12 +40,12 @@ const SignIn = () => {
 
   const logUser = async () => {
     try {
-        const user = await signInWithGooglePopup();
-        createUserAccount(user);
+      const user = await signInWithGooglePopup();
+      createUserAccount(user);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className="sign-in-container">
@@ -66,8 +70,13 @@ const SignIn = () => {
           value={password}
         />
         <div className="buttons-container">
-          <Button children="Sign in" buttonType="default" type="submit" />
           <Button
+            type="submit"
+            children="Sign in"
+            buttonType="default"
+          />
+          <Button
+            type="button"
             children="SIGN IN WITH GOOGLE"
             buttonType="google-sign-in"
             onClick={logUser}

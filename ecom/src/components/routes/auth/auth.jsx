@@ -2,7 +2,7 @@ import React from 'react'
 import { signInWithGooglePopup, createUserAccount } from'../../../utils/firebase/firebase';
 import SignUp from './signUp';
 import SignIn from './signIn';
-import Button from '../../button/button';
+import './../../../assets/scss/auth.scss'
 
 const Auth = () => {
   const logUser = async () => {
@@ -16,7 +16,7 @@ const Auth = () => {
 
 
   return (
-    <div>
+    <div className='authentication-container'>
         <SignIn />
         <SignUp />
     </div>
