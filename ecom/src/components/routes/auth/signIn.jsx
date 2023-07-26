@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import {
   signInWithGooglePopup,
   createUserAccount,
   signInUserWithEmailPass,
 } from "../../../utils/firebase/firebase";
+import { UserContext } from "../../../context/user";
 import FormInput from "./../../form/formInput";
 import Button from "./../../button/button";
 import "./../../../assets/scss/sign-in.scss";
@@ -15,8 +16,8 @@ const defaultFormFields = {
 
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
-
   const { email, password } = formFields;
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,8 +27,8 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await signInUserWithEmailPass(email, password);
-      console.log(response);
+      const { user } = await signInUserWithEmailPass(email, password);
+      setCurrentUser(user);
       resetFields();
     } catch (error) {
       if (error.code === "auth/wrong-password") alert("Invalid Credentials");
