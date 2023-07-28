@@ -5,8 +5,11 @@ import "./product-card.scss";
 
 const ProductCard = ({product}) => {
 
-  const { addItemToCart } = useContext(CartContext);
-  const addToCart = () => addItemToCart(product)
+  const { addItemToCart, cartCount, setCartCount } = useContext(CartContext);
+  const addToCart = () => {
+    addItemToCart(product);
+    setCartCount(cartCount+1);
+  }
 
   const {name, price, imageUrl} = product;
 
