@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import "./cart-item.scss";
 
 const CartItem = ({ item }) => {
