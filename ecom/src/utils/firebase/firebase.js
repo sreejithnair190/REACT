@@ -5,9 +5,16 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "firebase/auth";
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  writeBatch,
+  setDoc,
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAlVwGm55HspO5grynruFHO6GYjP7o6qOY",
@@ -31,12 +38,23 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserAccount = async (userAuth, additionalInfo={}) => {
+export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+  objectsToAdd.foreach((object) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+  await batch.commit();
+  console.log("done");
+};
+
+export const createUserAccount = async (userAuth, additionalInfo = {}) => {
   try {
-    if(!userAuth) return;
-    const userDocRef = doc(db, 'users', userAuth.uid);
+    if (!userAuth) return;
+    const userDocRef = doc(db, "users", userAuth.uid);
     const userSnapshot = await getDoc(userDocRef);
-    
+
     if (!userSnapshot.exists()) {
       const { displayName, email } = userAuth;
       const createdAt = new Date();
@@ -44,32 +62,31 @@ export const createUserAccount = async (userAuth, additionalInfo={}) => {
         displayName,
         email,
         createdAt,
-        ...additionalInfo
+        ...additionalInfo,
       });
     }
     return userDocRef;
-
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export const createAuthUser = async (email, passsword) => {
-  if( !email && !passsword) return;
-  
+  if (!email && !passsword) return;
+
   return await createUserWithEmailAndPassword(auth, email, passsword);
-}
+};
 
 export const createAuthUserWithEmailPass = async (email, passsword) => {
-  if( !email || !passsword) return;
-  
+  if (!email || !passsword) return;
+
   return await createUserWithEmailAndPassword(auth, email, passsword);
-}
+};
 
 export const signInUserWithEmailPass = async (email, passsword) => {
-  if( !email || !passsword) return;
-  
+  if (!email || !passsword) return;
+
   return await signInWithEmailAndPassword(auth, email, passsword);
-}
+};
 
 export const signoutUser = async () => await signOut(auth);
