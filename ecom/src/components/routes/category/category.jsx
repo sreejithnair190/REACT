@@ -1,26 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ProductContext } from "../../../context/product";
-import "./category.scss";
 import ProductCard from "../../product-card/product-card";
+import "./category.scss";
 
 const Category = () => {
   const { category } = useParams();
-  console.log(category);
   const { products } = useContext(ProductContext);
-  console.log(products);
-  console.log(products[category]);
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState(products[category]);
 
   useEffect(() => {
     setProduct(products[category]);
   }, [category, products]);
 
   return (
-    <div>
-      {product.map((item) => (
-        <ProductCard key={item.id} product={item} />
-      ))}
+    <div className="category-container">
+      {product &&
+        product.map((item) => <ProductCard key={item.id} product={item} />)}
     </div>
   );
 };
