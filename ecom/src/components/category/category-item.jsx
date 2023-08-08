@@ -2,7 +2,7 @@ import React from "react";
 
 const CategoryItem = ({ title, imgUrl }) => {
   return (
-    <div className="category-container">
+    <div className="category-item-container">
         <div className="background-image"  
             style={
                 {  backgroundImage: `url(${imgUrl})` }
