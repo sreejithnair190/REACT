@@ -6,7 +6,7 @@ import {
 } from "../../../utils/firebase/firebase";
 import { UserContext } from "../../../context/user";
 import FormInput from "./../../form/formInput";
-import Button from "./../../button/button";
+import  Button, { BUTTON_TYPE_CLASSES} from "./../../button/button";
 import "./../../../assets/scss/sign-in.scss";
 
 const defaultFormFields = {
@@ -74,12 +74,11 @@ const SignIn = () => {
           <Button
             type="submit"
             children="Sign in"
-            buttonType="default"
           />
           <Button
             type="button"
             children="SIGN IN WITH GOOGLE"
-            buttonType="google-sign-in"
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={logUser}
           />
         </div>

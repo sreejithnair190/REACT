@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ProductContext } from "../../../context/product";
-import CategoryPreview from "../../category-preview/category-preview";
+import CategoryPreview from "./../../category/category-preview/category-preview";
 
 const CategoriesPreview = () => {
   const { products } = useContext(ProductContext);

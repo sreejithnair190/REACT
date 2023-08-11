@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/cart";
 import "./checkout.scss"
-import CheckoutItem from "../checkout-item/checkout-item";
+import CheckoutItem from "./checkout-item/checkout-item";
 const Checkout = () => {
   const { cartItems, cartTotal } = useContext(CartContext);
   // const total = cartItems.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0)
