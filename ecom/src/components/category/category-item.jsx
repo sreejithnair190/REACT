@@ -1,18 +1,18 @@
-import React from "react";
+import {
+  CategoryItemContainer,
+  BackgroundImage,
+  CategoryBody
+} from "./category-style";
 
 const CategoryItem = ({ title, imgUrl }) => {
   return (
-    <div className="category-item-container">
-        <div className="background-image"  
-            style={
-                {  backgroundImage: `url(${imgUrl})` }
-            }
-        />
-        <div className="category-body-container">
+    <CategoryItemContainer>
+        <BackgroundImage imageUrl={imgUrl} />
+        <CategoryBody>
             <h2>{ title }</h2>
             <p>Shop Now</p>
-        </div>
-    </div>
+        </CategoryBody>
+    </CategoryItemContainer>
   );
 };
 

@@ -1,7 +1,5 @@
 import {ItemContainer, ItemDetails, ItemImage, ItemName} from "./cart-item-style";
 
-import "./cart-item.scss";
-
 const CartItem = ({ item }) => {
   const { name, imageUrl, price, quantity } = item;
 

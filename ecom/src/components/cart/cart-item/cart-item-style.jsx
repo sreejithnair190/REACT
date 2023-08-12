@@ -20,6 +20,6 @@ export const ItemName = styled.span`
   font-size: 16px;
 `;
 
-export const ItemImage = styled.span`
+export const ItemImage = styled.img`
   width: 30%;
 `;

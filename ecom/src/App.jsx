@@ -4,7 +4,6 @@ import Navbar from './components/routes/navigation/navbar';
 import Auth from './components/routes/auth/auth';
 import Shop from './components/shop/shop';
 import Checkout from './components/checkout/checkout';
-import './assets/scss/categories.scss';
 import './assets/scss/app.scss';
 
 
