@@ -2,21 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { UserProvider } from "./context/user";
+import { store } from "./store/store";
 import { ProductProvider } from "./context/product";
 import { CartProvider } from "./context/cart";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <UserProvider>
+    <Provider store={store}>
+      <BrowserRouter>
         <ProductProvider>
           <CartProvider>
             <App />
           </CartProvider>
         </ProductProvider>
-      </UserProvider>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
