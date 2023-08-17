@@ -1,5 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
 
 export const UserContext = createContext({
   currentUser: null,

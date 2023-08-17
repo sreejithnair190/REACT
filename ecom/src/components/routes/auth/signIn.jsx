@@ -1,12 +1,13 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   signInWithGooglePopup,
   createUserAccount,
   signInUserWithEmailPass,
 } from "../../../utils/firebase/firebase";
-import { UserContext } from "../../../context/user";
 import FormInput from "./../../form/formInput";
 import  Button, { BUTTON_TYPE_CLASSES} from "./../../button/button";
+import { setCurrentUser} from "./../../../store/user/userAction";
 import "./../../../assets/scss/sign-in.scss";
 
 const defaultFormFields = {
@@ -17,7 +18,7 @@ const defaultFormFields = {
 const SignIn = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +29,7 @@ const SignIn = () => {
     e.preventDefault();
     try {
       const { user } = await signInUserWithEmailPass(email, password);
-      setCurrentUser(user);
+      dispatch(setCurrentUser(user));
       resetFields();
     } catch (error) {
       if (error.code === "auth/wrong-password") alert("Invalid Credentials");

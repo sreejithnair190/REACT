@@ -1,3 +1,7 @@
 export const USER_ACTION_TYPES = {
   SET_CURRENT_USER: "SET_CURRENT_USER",
 };
+
+export const PRODUCT_ACTION_TYPES = {
+  SET_PRODUCTS: "SET_PRODUCTS"
+};
