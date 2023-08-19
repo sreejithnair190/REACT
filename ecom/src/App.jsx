@@ -8,12 +8,6 @@ import Checkout from "./components/checkout/checkout";
 import "./assets/scss/app.scss";
 
 const App = () => {
-  useEffect(() => {
-    const getProductsMap = async () =>
-      setProducts(await getCategoriesAndDocuments("categories"));
-    getProductsMap();
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<Navbar />}>

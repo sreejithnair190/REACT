@@ -11,6 +11,6 @@ export const productReducer = (state = INITIAL_STATE, action = {}) => {
         case PRODUCT_ACTION_TYPES.SET_PRODUCTS:
             return { ...state, products:payload };
         default:
-            state;
+            return state;
     }
 };
