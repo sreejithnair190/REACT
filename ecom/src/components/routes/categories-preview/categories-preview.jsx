@@ -4,13 +4,15 @@ import CategoryPreview from "./../../category/category-preview/category-preview"
 
 const CategoriesPreview = () => {
   const products = useSelector(selectProducts);
-
   return (
     <>
-      {Object.keys(products).map((title) => {
-        const product = products[title];
-        return (<CategoryPreview key={title} title={title} products={product} />)
-      })}
+      {products &&
+        Object.keys(products).map((title) => {
+          const product = products[title];
+          return (
+            <CategoryPreview key={title} title={title} products={product} />
+          );
+        })}
     </>
   );
 };
