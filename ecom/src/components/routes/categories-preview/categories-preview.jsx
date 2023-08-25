@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
-import { selectProducts } from "./../../../store/product/productSelector";
+import { selectProductsMap } from "./../../../store/product/productSelector";
 import CategoryPreview from "./../../category/category-preview/category-preview";
 
 const CategoriesPreview = () => {
-  const products = useSelector(selectProducts);
+  const products = useSelector(selectProductsMap);
   return (
     <>
       {products &&
